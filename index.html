@@ -1,6 +1,8 @@
 <html>
 <head>
-	<link rel="stylesheet" type="text" href="style.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text" href="css/style.css"/>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -8,16 +10,19 @@
 		<h1 class="title"> Tyke Translate</h1>
 
 		<div class="translate-input">
-			<input type="text" id="translate" placeholder="normal words"></input>
+			<textarea id="input" placeholder="normal words" value="Mother, I am a doorway! YES YES brap brap."></textarea>
 		</div>
 
-		<button class="translate-button"><h2>Translate<h2></button>
+		<button class="translate-button" id="translate"><h2>Translate<h2></button>
 
 		<div class="translated-output">
-			<input type="text" id="translated" placeholder="funny words"></input>
+			<textarea id="output" placeholder="funny words"></textarea>
 		</div>
 
 	</div>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.autosize-min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
 
