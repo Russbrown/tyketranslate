@@ -14,9 +14,17 @@ $(document).ready(function() {
 		init: function() {
 			this.bindEvents();
 			this.loadDatabase();
+			this.loadTwitter();
+			// this.playMusic();
+			 $('textarea').autosize();   
 		},
 		bindEvents: function() {
-			$translate.bind("click", this.breakdown)
+			$translate.bind("click", this.convert)
+		},
+		convert: function() {
+			var words = app.breakdown();
+			var string = app.translate(words);
+			$output.val(string).trigger('autosize.resize');
 		},
 		breakdown: function() {
 
@@ -33,48 +41,82 @@ $(document).ready(function() {
 
 			var words = newtext.split(/[ ]+/);;
 			result.string = newtext;
-			app.translate(words);
-			
+			return words;
 		},
 		translate: function(words) {
-			console.log(words);
-			if (typeof arrays.english != 'undefined') {
+
+			if (typeof arrays.englishPhrases != 'undefined') {
+				for (var i = 0; i < (arrays.englishPhrases).length; i++) {
+					var item = arrays.englishPhrases[i];
+					result.string = (result.string).replace(item, arrays.yorkshirePhrases[i]);
+				}
+			}
+
+			if (typeof arrays.englishWords != 'undefined') {
 				for (var i = 0; i < words.length; i++) {
 				    var item = words[i].replace(/[^\w\s]/gi, '');
-				    if ($.inArray(item.toLowerCase(), arrays.english) > -1){
+				    if ($.inArray(item.toLowerCase(), arrays.englishWords) > -1){
 
 
 
 
-				    	var key = $.inArray(item.toLowerCase(), arrays.english);
-				    	console.log((result.string).replace(" " + words[i], " " + arrays.yorkshire[key]));
+				    	var key = $.inArray(item.toLowerCase(), arrays.englishWords);
 				    	if (item[0].toUpperCase() == item[0]) {
 				    		console.log(item);
-				    		result.string = (result.string).replace(item, capitaliseFirstLetter(arrays.yorkshire[key]));
+				    		result.string = (result.string).replace(item, capitaliseFirstLetter(arrays.yorkshireWords[key]));
 				    	} 
 				    	else {
-				    		result.string = (result.string).replace(" " + item, " " + arrays.yorkshire[key]);
+				    		result.string = (result.string).replace(" " + item, " " + arrays.yorkshireWords[key]);
 				    	}
 
 				    } 
 				}
 			}
-			$output.val(result.string);
+			return(result.string);
+		},
+		loadTwitter: function() {
+			$.getJSON('php/request.php', function(data) {
+				var tweets = [];
+			  	$.each(data.statuses, function(key, val) {
+			  		var user = val.user.screen_name;
+			  		var tweet = val.text;
+			  		var profile_pic = val.user.profile_image_url;
+			  		tweets.push(val.text);
+			  	});
+			 
+			  
+			});
 		},
 		loadDatabase: function() {
 			
 			$.getJSON('data/words.json', function(data) {
-			  arrays.english = [];
-			  arrays.yorkshire = [];
+			  arrays.englishWords = [];
+			  arrays.yorkshireWords = [];
 
 			  $.each(data, function(key, val) {
 
-			  	arrays.english.push(val.English);
-			  	arrays.yorkshire.push(val.Yorkshire);
+			  	arrays.englishWords.push(val.English);
+			  	arrays.yorkshireWords.push(val.Yorkshire);
 			  });
 			 
 			  
 			});
+			$.getJSON('data/phrases.json', function(data) {
+			  arrays.englishPhrases = [];
+			  arrays.yorkshirePhrases = [];
+
+			  $.each(data, function(key, val) {
+
+			  	arrays.englishPhrases.push(val.English);
+			  	arrays.yorkshirePhrases.push(val.Yorkshire);
+			  });
+			 
+			  
+			});
+		},
+		playMusic: function() {
+			var audio = new Audio('sounds/anthem.mp3');
+			audio.play();
 		}
 	}
 
