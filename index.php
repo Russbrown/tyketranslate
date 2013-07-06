@@ -24,13 +24,10 @@
 		<div id="jstwitter"></div>
 
 	</section>
+
+
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>	
 	<script src="js/main.js"></script>
-	<script>
-		$(function () {
-	    // start jqtweet!
-	    JQTWEET.loadTweets();
-		});
-	</script>
 </body>
 </html>
