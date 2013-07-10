@@ -66,10 +66,20 @@ table {
     font-style: normal;
 }
 
-.translate-wrapper {
-	width: 600px;
+.translate-wrapper,
+.stream-wrapper {
+	width: 800px;
 	margin: 0 auto;
 }
+.translate-wrapper {
+	margin-bottom: 40px;
+}
+
+										@media screen and (max-width: 810px) {
+											.translate-wrapper {
+												width: 100%;
+											}
+										}
 
 body {
 	font-family: sans-serif;
@@ -80,12 +90,17 @@ h1 {
 	font-family: 'langdonregular', sans-serif;
 	font-size: 4.8em;
 	text-align: center;
-	padding: 40px 0;
+	padding: 40px 0 10px;
 }
 
 h2 {
 	font-size: 3.2em;
 	font-family: 'langdonregular', sans-serif;
+}
+
+h3 {
+	font-size: 1.2em;
+	font-family: sans-serif;
 }
 
 .translate-input,
@@ -95,14 +110,16 @@ h2 {
 
 /*******************************************
 Form stuff */
-input {
+textarea {
 	width: 100%;
 	height: 100px;
 	border: none;
 	background: #f9f9f9;
 	font-size: 2.4em;
+	line-height: 2.4em;
+	text-align: center;
 }
-input:focus {
+textarea:focus {
 	outline: 3px solid #45b278;
 }
 ::-webkit-input-placeholder {
@@ -123,9 +140,16 @@ button {
 	background: #45B278;
 	border: none;
 	line-height: 100px;
+	box-shadow: 0px 1px 1px 0px #777;
 }
 button:focus {
 	outline: none;
+}
+button h2 {
+	font-size: 4.6em;
+}
+.hero {
+	text-align: center;
 }
 .translate-button:hover {
 	box-shadow: inset 0px 1px 1px 1px #2e8552;
@@ -133,3 +157,121 @@ button:focus {
 .translate-button:active {
 	box-shadow: inset 0px 2px 2px 2px #2e8552;
 }
+.mascot {
+	background: url(img/tyke.gif);
+	background-size: 100%;
+	width: 200px;
+	height: 252px;
+	margin: 0 auto;
+}
+
+/* Tyketweets */
+.tyketweet {
+	width: 100%;
+	height: 140px;
+	margin: 20px 0;
+}
+.tyketweet h3 {
+	text-align: left;
+}
+.tyked h3 {
+	padding: 20px;
+}
+.original h3 {
+	padding: 10px;
+} 
+.original {
+	width: 90%;
+	height: auto;
+	float: right;
+	background: blue;
+}
+.tyked {
+	width: 90%;
+	height: auto;
+	float: right;
+	background: #45b278;
+}
+.profile {
+	width: 60px;
+	height: auto;
+	position: absolute;
+	left: -60px;
+	background: red;
+}
+
+#tyke-container {
+	position: relative;
+	margin: 10px auto;
+	width: 90%;
+	margin-left: 10%;
+	height: 60px;
+	z-index: 1;
+}
+#tyke-container img {
+	width: 100%;
+	height: auto;
+}
+
+#tyke-container {
+	perspective: 1000;
+}
+
+#tyke-card {
+	width: 100%;
+	height: 100%;
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	-webkit-transition: all 1.0s linear;
+	-moz-transition: all 1.0s linear;
+	-o-transition: all 1.0s linear;
+	-ms-transition: all 1.0s linear;
+	transition: all 1.0s linear;
+}
+
+#tyke-container:hover #tyke-card {
+	-webkit-transform: rotateX(180deg);
+	-moz-transform: rotateX(180deg);
+	-o-transform: rotateX(180deg);
+	-ms-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+}
+
+.face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.face.back {
+	display: block;
+
+	-webkit-transform: rotateX(180deg);
+	-moz-transform: rotateX(180deg);
+	-o-transform: rotateX(180deg);
+	-ms-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	color: white;
+	text-align: center;
+	background-color: #B28884;
+}
+
+
+
+
+
+
+
+
